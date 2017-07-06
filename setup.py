@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-
+1111
 setup(
     name = 'Ordinati',
     version = '0.1.0',
@@ -9,8 +9,10 @@ setup(
     Kshitija Waghurdekar <kshiti135@gmail.com>,
     Rishika Goyal <rishika7000@gmail.com>''',
     packages = find_packages(),
-    license = 'LICENSE',
+    license = 'AGPLv3',
     description = 'Offline bookmark management command line tool',
+    url = 'https://github.com/Ordinati/Ordinati',
+    keyword = 'bookmarks manager command line cli',
     long_description = open('README.md').read(),
     install_requires = [
         'Click'
