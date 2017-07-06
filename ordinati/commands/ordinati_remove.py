@@ -16,18 +16,19 @@ def remove(name,ID,url):
 	with open(os.path.expanduser('~/.ordinati/bookmarks.json'), 'r') as f:
         	objects = json.loads(f.read())
 
+    #To delete the bookmark based on name
 	if name:
 		for i in xrange(len(objects)):
 			if objects[i]['name'] == name :
 				objects.pop(i)
 				break
-
+	#To delete the bookmark based on ID
 	if ID:
 		for i in xrange(len(objects)):
 			if objects[i]['id'] == ID :
 				objects.pop(i)
 				break
-
+    #To delete bookmark based on URL
 	if url:
 		for i in xrange(len(objects)):
 			if objects[i]['url'] == url:
@@ -35,12 +36,10 @@ def remove(name,ID,url):
 				break
 
 	length = len(objects)
-	
+
 	for i in range(length):
 		objects[i]['id'] = i
 
-	with open(os.path.expanduser('~/.ordinati/bookmarks.json'), 'w') as f:
-		json.dump(objects, f,sort_keys=True, indent=4, separators=(',',': '))
-		
-		
-
+    #To add the objects in the JSON file after deletion
+ 	with open(os.path.expanduser('~/.ordinati/bookmarks.json'), 'w') as f:
+		json.dump(objects, f, indent=4, separators=(',',': '))
