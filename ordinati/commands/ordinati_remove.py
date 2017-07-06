@@ -14,7 +14,7 @@ def remove(name,ID,url):
 
 	#Expand the '~' to the user's home directory
 	with open(os.path.expanduser('~/.ordinati/bookmarks.json'), 'r') as f:
-        	objects = json.loads(f.read())
+		objects = json.loads(f.read())
 
     #To delete the bookmark based on name
 	if name:
@@ -41,5 +41,5 @@ def remove(name,ID,url):
 		objects[i]['id'] = i
 
     #To add the objects in the JSON file after deletion
- 	with open(os.path.expanduser('~/.ordinati/bookmarks.json'), 'w') as f:
+	with open(os.path.expanduser('~/.ordinati/bookmarks.json'), 'w') as f:
 		json.dump(objects, f, indent=4, separators=(',',': '))
