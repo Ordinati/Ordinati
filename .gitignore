@@ -2,3 +2,4 @@ commits.log
 Ordinati.egg-info
 ordinati/__pycache__
 ordinati/commands/__pycache__
+*.pyc
