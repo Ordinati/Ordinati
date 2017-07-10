@@ -1,6 +1,8 @@
 import click
 from .commands import ordinati_show
 from .commands import ordinati_remove
+from .commands import ordinati_tag
+from .commands import ordinati_update
 
 @click.group()
 def cli():
@@ -11,3 +13,5 @@ def cli():
     
 cli.add_command(ordinati_show.show)
 cli.add_command(ordinati_remove.remove)
+cli.add_command(ordinati_tag.tag)
+cli.add_command(ordinati_update.update)
