@@ -1,6 +1,7 @@
 import click
 import json
 import os
+import sys
 
 @click.command()
 @click.option('-s', '--sort-by', type = click.STRING, help = 'Output to be sorted by this field (id by default).')
@@ -22,19 +23,30 @@ def show(count, sort_by, tag):
     
     #Sort the list of objects by the key as specified
     if sort_by:
-        objects = sorted(objects, key = lambda k: k[sort_by])
+        if sort_by not in ['name', 'id', 'url']:
+            click.echo('Cannot sort by {0}.'.format(sort_by))
+            click.echo('Available options: name, id, url.')
+            sys.exit(0)
+        else:
+            objects = sorted(objects, key = lambda k: k[sort_by])
     
-    #Set number of objects to be displayed to the count
-    objects = objects[0:count]
+    #Check to ensure count does not exceed number of objects
+    if count > len(objects):
+        click.echo('Warning: {0} exceeds the number of bookmarks.'.format(count))
+        click.echo('Count set to number of bookmarks instead.')
+        count = len(objects)
+    
+    #Taking only 'count' bookmarks
+    objects = objects[0:count] 
     
     #First line of output describes the options provided   
     output_string = 'Listing {0} bookmarks'.format(count)
     if tag:
-        output_string += ' tagged "{0}"'.format(tag)
+        output_string += ' tagged \'{0}\''.format(tag)
     if sort_by:
-        output_string += ' sorted by "{0}"'.format(sort_by)
+        output_string += ' sorted by \'{0}\''.format(sort_by)
     output_string += ':\n'
     click.echo(output_string)
     #Display only the name and url
     for x in objects:
-        click.echo('{0}:\t{1}'.format(x['name'], x['url']))
+        click.echo('{0}:\r\t\t{1}'.format(x['name'], x['url']))
