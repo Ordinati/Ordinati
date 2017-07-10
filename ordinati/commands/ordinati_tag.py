@@ -1,7 +1,5 @@
 '''
 Module to manipulate tags for a bookmark
-Date: 07/07/2017
-Author: Husain Zafar
 '''
 import click
 import json
