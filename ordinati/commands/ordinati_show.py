@@ -4,7 +4,7 @@ import os
 import sys
 
 @click.command()
-@click.option('-s', '--sort-by', type = click.STRING, help = 'Output to be sorted by this field (id by default).')
+@click.option('-s', '--sort-by', type = click.Choice(['name', 'id', 'url']), help = 'Output to be sorted by this field (id by default).')
 @click.option('-c', '--count', default = 10, type = click.INT, help = 'Number of bookmarks to be listed (10 by default).')
 @click.option('-t', '--tag', type = click.STRING, help = 'List bookmarks containing the specified tag.')
 def show(count, sort_by, tag):
@@ -23,12 +23,7 @@ def show(count, sort_by, tag):
     
     #Sort the list of objects by the key as specified
     if sort_by:
-        if sort_by not in ['name', 'id', 'url']:
-            click.echo('Cannot sort by {0}.'.format(sort_by))
-            click.echo('Available options: name, id, url.')
-            sys.exit(0)
-        else:
-            objects = sorted(objects, key = lambda k: k[sort_by])
+        objects = sorted(objects, key = lambda k: k[sort_by])
     
     #Check to ensure count does not exceed number of objects
     if count > len(objects):
