@@ -28,7 +28,7 @@ def show(count, sort_by, tag):
     if count > len(objects) and count != 10:
         click.echo('Warning: {0} exceeds the number of bookmarks.'.format(count))
         click.echo('Count set to number of bookmarks instead.')
-    count = len(objects)
+        count = len(objects)
     
     #Taking only 'count' bookmarks
     objects = objects[0:count] 
@@ -39,7 +39,6 @@ def show(count, sort_by, tag):
         output_string += ' tagged \'{0}\''.format(tag)
     if sort_by:
         output_string += ' sorted by \'{0}\''.format(sort_by)
-    output_string += ':\n'
     click.echo(output_string)
     
     #Display only the name and url

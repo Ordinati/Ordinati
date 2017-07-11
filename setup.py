@@ -20,5 +20,6 @@ setup(
     entry_points = '''
         [console_scripts]
         ordinati = ordinati.ordinati:cli
+        ord = ordinati.ordinati:cli
         ''',
 )
