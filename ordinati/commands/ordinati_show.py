@@ -1,7 +1,6 @@
 import click
 import json
 import os
-import sys
 
 @click.command()
 @click.option('-s', '--sort-by', type = click.Choice(['name', 'id', 'url']), help = 'Output to be sorted by this field (id by default).')
@@ -26,7 +25,7 @@ def show(count, sort_by, tag):
         objects = sorted(objects, key = lambda k: k[sort_by])
     
     #Check to ensure count does not exceed number of objects
-    if count > len(objects):
+    if count > len(objects) and count != 10:
         click.echo('Warning: {0} exceeds the number of bookmarks.'.format(count))
         click.echo('Count set to number of bookmarks instead.')
         count = len(objects)
@@ -40,8 +39,8 @@ def show(count, sort_by, tag):
         output_string += ' tagged \'{0}\''.format(tag)
     if sort_by:
         output_string += ' sorted by \'{0}\''.format(sort_by)
-    output_string += ':\n'
     click.echo(output_string)
+    
     #Display only the name and url
     for x in objects:
         click.echo('{0}:\r\t\t{1}'.format(x['name'], x['url']))
