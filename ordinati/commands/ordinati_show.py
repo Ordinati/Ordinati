@@ -25,7 +25,7 @@ def show(count, sort_by, tag):
         objects = sorted(objects, key = lambda k: k[sort_by])
     
     #Check to ensure count does not exceed number of objects
-    if count > len(objects) and count != 10:
+    if count > len(objects):
         click.echo('Warning: {0} exceeds the number of bookmarks.'.format(count))
         click.echo('Count set to number of bookmarks instead.')
         count = len(objects)

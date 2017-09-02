@@ -1,4 +1,27 @@
 from setuptools import setup, find_packages
+from setuptools.command.develop import develop
+from setuptools.command.install import install
+import os, json
+
+def check_bookmarks_file():
+    if not os.path.exists(os.path.expanduser('~/.ordinati')):
+        os.mkdir(os.path.expanduser('~') + '/.ordinati')
+    if not os.path.isfile(os.path.expanduser('~/.ordinati/bookmarks.json')):
+        f = open(os.path.expanduser('~/.ordinati/bookmarks.json'), 'w+')
+        objects = []
+        json.dump(objects, f, indent=4, separators=(',', ': '))
+
+class create_bookmarks_file_develop(develop):
+    """Post-installation for development mode."""
+    def run(self):
+        check_bookmarks_file()
+        develop.run(self)
+
+class create_bookmarks_file_install(install):
+    """Post-installation for installation mode."""
+    def run(self):
+        check_bookmarks_file()
+        install.run(self)
 
 setup(
     name = 'Ordinati',
@@ -22,4 +45,9 @@ setup(
         ordinati = ordinati.ordinati:cli
         ord = ordinati.ordinati:cli
         ''',
+    cmdclass={
+        'develop': create_bookmarks_file_develop,
+        'install': create_bookmarks_file_install,
+    },
+
 )
