@@ -38,7 +38,7 @@ setup(
     keyword = 'bookmarks manager command line cli',
     long_description = open('README.md').read(),
     install_requires = [
-        'Click'
+        'Click', 'httplib2'
     ],
     entry_points = '''
         [console_scripts]
