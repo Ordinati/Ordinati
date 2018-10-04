@@ -1,6 +1,6 @@
 # Ordinati
 ## Description
-Oridinati is a command line tool to manage bookmarks across browsers. 
+Ordinati is a command line tool to manage bookmarks across browsers. 
 Browsers supported: 
 * Mozilla Firefox
 * Google Chrome
